@@ -66,7 +66,7 @@ function DraftPage() {
     }
 
     const setHighlightedHeroes = () => {
-        const emptySearch = filteredHeroes.length === 0
+        const emptySearch = searchTerm.length === 0
         const allRolesActive = filteredRoles.length === 0
         const allHeroesActive = emptySearch && allRolesActive && filteredLegs.length === 5
 
@@ -80,7 +80,7 @@ function DraftPage() {
                     ((emptySearch && heroHasActiveRoles && heroHasEnoughLegs)
                     || (emptySearch && heroHasEnoughLegs && allRolesActive)
                     || (heroHasActiveRoles && heroMatchesSearch )
-                    || heroMatchesSearch
+                    || (heroMatchesSearch && allRolesActive)
                     || allHeroesActive)
                     && !heroIsDrafted
                 )
