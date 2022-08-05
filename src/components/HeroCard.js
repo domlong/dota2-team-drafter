@@ -11,6 +11,14 @@ function HeroCard(props) {
     if(props.hero===undefined) {
         return null
     }
+
+    const isDisabledYourTeam = 
+            props.enemyTeam.includes(props.hero.id)
+            || (!props.yourTeam.includes(props.hero.id) && props.yourTeam.length === 5)
+
+    const isDisabledEnemyTeam = 
+            props.yourTeam.includes(props.hero.id)
+            || (!props.enemyTeam.includes(props.hero.id) && props.enemyTeam.length === 5)            
     return(
         <Card variant="outlined" sx={{ maxWidth: 345 }}>
             <CardHeader title={props.hero.localized_name} />
@@ -39,14 +47,14 @@ function HeroCard(props) {
                     size="small" 
                     variant='outlined'
                     onClick={()=>props.pick(1)}
-                    disabled={props.enemyTeam.includes(props.hero.id)}
+                    disabled={isDisabledYourTeam}
                 >
                     PICK</Button>
                 <Button
                     size="small" 
                     variant='outlined'
                     onClick={()=>props.pick(2)}
-                    disabled={props.yourTeam.includes(props.hero.id)}
+                    disabled={isDisabledEnemyTeam}
                 >
                     PICK ENEMY</Button>
             </CardActions>
