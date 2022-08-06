@@ -33,7 +33,7 @@ function HeroCard(props) {
                 details go here
                 </Typography>
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {`win rate (this month): ${props.hero.winRate}%`}
+                    {`win rate: ${props.hero.winRate}%`}
                 </Typography>
             </CardContent>
             <CardActions>

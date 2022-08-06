@@ -110,7 +110,6 @@ function DraftPage() {
     }
 
     const getDummyHeroStats = () => {
-        // setHeroes(mockResponseData.heroes)
         const tempHeroes = mockResponseData
                 .heroes
                 .map(hero => (
@@ -181,6 +180,24 @@ function DraftPage() {
         So I constructed a basic mapping template (dotabuffHeroMap.js) between this info and what the API spits out.
         This code performs that mapping.
     */
+    // const advantageMap = 
+    //         Object
+    //             .entries(advantages)
+    //             .map(x => {
+    //                 return { 
+    //                     "id": heroMap.find(y => x[0]===y.name).id,
+    //                     "matchups": 
+    //                         Object
+    //                             .entries(x[1])
+    //                             .map(m => {
+    //                                 return {
+    //                                     "id": heroMap.find(x => x.name===m[0]).id,
+    //                                     "advantage": m[1]
+    //                                 }
+    //                             })
+    //                 }
+    //             })
+
     const advantageMap = 
             Object
                 .entries(advantages)
@@ -191,10 +208,10 @@ function DraftPage() {
                             Object
                                 .entries(x[1])
                                 .map(m => {
-                                    return {
-                                        "id": heroMap.find(x => x.name===m[0]).id,
-                                        "advantage": m[1]
-                                    }
+                                    return (
+                                        [heroMap.find(x => x.name===m[0]).id,
+                                        m[1]]
+                                    )
                                 })
                     }
                 })
@@ -213,6 +230,8 @@ function DraftPage() {
     }
 
     const matchupSuggestions = sumMatchupAdvantage(enemyTeam)
+
+    localStorage.setItem('matchupSuggestions', advantageMap);
 
     if(heroes.length===0) {
         return <CircularProgress />
@@ -241,6 +260,7 @@ function DraftPage() {
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}/>                                            
                 </Stack>
+                {console.log(advantageMap)}
             </Stack>
         </Box>
     )
