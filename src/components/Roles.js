@@ -2,7 +2,7 @@ import { Button, ButtonGroup} from "@mui/material"
 
 function Roles(props) {
     return(
-        <ButtonGroup variant="outlined">
+        <ButtonGroup size='small'>
             {props.roles.map((role, i) => 
                 <Button
                     variant="contained"

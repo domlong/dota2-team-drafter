@@ -19,6 +19,8 @@ function DraftPage() {
     //     pick buttons color change?
     // actually write HeroDetails
     //
+    // automatically save & load draft when routing
+    //
     // investigate other api params
     //      can grab more data using CONSTANTS call but might be overkill.
     //      unwrap it into an array if doing this
@@ -199,24 +201,6 @@ function DraftPage() {
                     }
                 })
 
-    // const advantageMap = 
-    //         Object
-    //             .entries(advantages)
-    //             .map(x => {
-    //                 return { 
-    //                     "id": heroMap.find(y => x[0]===y.name).id,
-    //                     "matchups": 
-    //                         Object
-    //                             .entries(x[1])
-    //                             .map(m => {
-    //                                 return (
-    //                                     [heroMap.find(x => x.name===m[0]).id,
-    //                                     m[1]]
-    //                                 )
-    //                             })
-    //                 }
-    //             })
-
     const sumMatchupAdvantage = (team) => {
         const mapSum = advantageMap
                         .filter(x => team.includes(x.id))
@@ -236,18 +220,22 @@ function DraftPage() {
         return <CircularProgress />
     }
     else return(
-        <Box>
-            <Stack direction="row" >
+        <Box sx={{ m: 5 }}>
+            <Stack direction="row" spacing={4}>
                 <Stack sx={{ maxWidth: '50%' }}>
                     <TextField id="filled-basic" label="search" variant="outlined" onChange={(e)=>setSearchTerm(e.target.value)} />
                     {heroGrids}
-                    <Stack direction="row">
+                    <Stack direction="row" spacing={2}>
                         <Roles roles={roles} filteredRoles={filteredRoles} filterByRole={filterByRole}/>
                         <Legs legs={legs} filterLegs={filterByLegs} filteredLegs={filteredLegs} setFilteredLegs={setFilteredLegs} />
                     </Stack>
                 </Stack>
                 <Stack>
-                    <HeroCard hero={heroes.find(hero => hero.id === activeHero)} pick={(team)=>pickHero(activeHero,team)} yourTeam={yourTeam} enemyTeam={enemyTeam}/>
+                    <Stack direction="row" spacing={2}>
+                        <HeroCard hero={heroes.find(hero => hero.id === activeHero)} pick={(team)=>pickHero(activeHero,team)} yourTeam={yourTeam} enemyTeam={enemyTeam}/>
+                        <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(0,matchupSuggestions.length/2)} selectHero={selectHero}/>
+                        <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse()} selectHero={selectHero}/>
+                    </Stack>
                     <h2>Your team</h2>
                     <HeroGrid
                         heroes={yourTeam.map(id => heroes.find(hero => hero.id === id))}
@@ -258,7 +246,6 @@ function DraftPage() {
                         heroes={enemyTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}/>                                            
-                    <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id)))} selectHero={selectHero}/>
                     {/* {console.log(matchupSuggestions)} */}
                 </Stack>
             </Stack>

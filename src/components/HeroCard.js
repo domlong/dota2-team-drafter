@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import { Button } from "@mui/material"
 import { Link } from "react-router-dom";
+import { Chip } from '@mui/material';
 
 function HeroCard(props) { 
     if(props.hero===undefined) {
@@ -18,13 +19,15 @@ function HeroCard(props) {
 
     const isDisabledEnemyTeam = 
             props.yourTeam.includes(props.hero.id)
-            || (!props.enemyTeam.includes(props.hero.id) && props.enemyTeam.length === 5)            
+            || (!props.enemyTeam.includes(props.hero.id) && props.enemyTeam.length === 5)
+            
+    const roleChips = props.hero.roles.map(role => <Chip label={role} />)
     return(
-        <Card variant="outlined" sx={{ maxWidth: 345 }}>
+        <Card variant="outlined" sx={{ maxWidth: 384 }}>
             <CardHeader title={props.hero.localized_name} />
             <CardMedia
                 component="img"
-                height="140"
+                height="216"
                 image={`https://cdn.cloudflare.steamstatic.com/${props.hero.img}?w=164&h=144&fit=crop&auto=format`}
                 alt="props.name"
             />
@@ -35,6 +38,7 @@ function HeroCard(props) {
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {`win rate: ${props.hero.winRate}%`}
                 </Typography>
+                {roleChips}
             </CardContent>
             <CardActions>
                 <Link

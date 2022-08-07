@@ -4,7 +4,7 @@ import Hero from "./Hero"
 function AdvantageList(props) {
     if(props.heroes === undefined || props.heroes.length===0 || props.list === undefined || props.list.length===0) return null
     return(
-        <ImageList cols={6}>
+        <ImageList cols={1} style={{maxHeight: 500, overflow: 'auto'}}>
             {props.list.map((item) => (
                 <div>
                     <Hero
