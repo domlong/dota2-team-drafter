@@ -5,6 +5,7 @@ import HeroGrid from "./HeroGrid"
 import Roles from "./Roles";
 import Legs from "./Legs";
 import HeroCard from "./HeroCard";
+import AdvantageList from "./AdvantageList";
 import mockResponseData from "../dummyHeroData";
 import {heroMap} from "../dotabuffHeroMap";
 import {advantages} from "../matchupAdvantages";
@@ -180,24 +181,6 @@ function DraftPage() {
         So I constructed a basic mapping template (dotabuffHeroMap.js) between this info and what the API spits out.
         This code performs that mapping.
     */
-    // const advantageMap = 
-    //         Object
-    //             .entries(advantages)
-    //             .map(x => {
-    //                 return { 
-    //                     "id": heroMap.find(y => x[0]===y.name).id,
-    //                     "matchups": 
-    //                         Object
-    //                             .entries(x[1])
-    //                             .map(m => {
-    //                                 return {
-    //                                     "id": heroMap.find(x => x.name===m[0]).id,
-    //                                     "advantage": m[1]
-    //                                 }
-    //                             })
-    //                 }
-    //             })
-
     const advantageMap = 
             Object
                 .entries(advantages)
@@ -208,13 +191,31 @@ function DraftPage() {
                             Object
                                 .entries(x[1])
                                 .map(m => {
-                                    return (
-                                        [heroMap.find(x => x.name===m[0]).id,
-                                        m[1]]
-                                    )
+                                    return {
+                                        "id": heroMap.find(x => x.name===m[0]).id,
+                                        "advantage": m[1]
+                                    }
                                 })
                     }
                 })
+
+    // const advantageMap = 
+    //         Object
+    //             .entries(advantages)
+    //             .map(x => {
+    //                 return { 
+    //                     "id": heroMap.find(y => x[0]===y.name).id,
+    //                     "matchups": 
+    //                         Object
+    //                             .entries(x[1])
+    //                             .map(m => {
+    //                                 return (
+    //                                     [heroMap.find(x => x.name===m[0]).id,
+    //                                     m[1]]
+    //                                 )
+    //                             })
+    //                 }
+    //             })
 
     const sumMatchupAdvantage = (team) => {
         const mapSum = advantageMap
@@ -224,14 +225,12 @@ function DraftPage() {
                             return prev
                         }, new Map())
         const arraySum = Array.from(mapSum)
-                            .map(([id, advantage]) => ({id, advantage}))
+                            .map(([id, advantage]) => ({id, advantage: Math.round((advantage + Number.EPSILON) * 100) / 100}))
                             .sort((a,b) => b.advantage - a.advantage)
         return arraySum
     }
 
     const matchupSuggestions = sumMatchupAdvantage(enemyTeam)
-
-    localStorage.setItem('matchupSuggestions', advantageMap);
 
     if(heroes.length===0) {
         return <CircularProgress />
@@ -259,8 +258,9 @@ function DraftPage() {
                         heroes={enemyTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}/>                                            
+                    <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id)))} selectHero={selectHero}/>
+                    {/* {console.log(matchupSuggestions)} */}
                 </Stack>
-                {console.log(advantageMap)}
             </Stack>
         </Box>
     )
