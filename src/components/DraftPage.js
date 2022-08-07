@@ -6,10 +6,11 @@ import Roles from "./Roles";
 import Legs from "./Legs";
 import HeroCard from "./HeroCard";
 import AdvantageList from "./AdvantageList";
-import mockResponseData from "../dummyHeroData";
+// import mockResponseData from "../dummyHeroData";
 import {heroMap} from "../dotabuffHeroMap";
 import {advantages} from "../matchupAdvantages";
 import Typography from '@mui/material/Typography';
+import { Button } from "@mui/material"
 
 function DraftPage() {
     // to do
@@ -113,15 +114,16 @@ function DraftPage() {
         }
     }
 
-    const getDummyHeroStats = () => {
-        const tempHeroes = mockResponseData
-                .heroes
-                .map(hero => (
-                    {...hero,
-                    winRate: calculateWinRate(hero)}
-        ))
-        setHeroes(tempHeroes)
-    }
+    //
+    // const getDummyHeroStats = () => {
+    //     const tempHeroes = mockResponseData
+    //             .heroes
+    //             .map(hero => (
+    //                 {...hero,
+    //                 winRate: calculateWinRate(hero)}
+    //     ))
+    //     setHeroes(tempHeroes)
+    // }
 
     // this is jank I know
     // returns pre-formatted percentage as float accurate to 3 sig figures e.g. 52.7
@@ -134,23 +136,31 @@ function DraftPage() {
         return Math.round((winRate + Number.EPSILON) * 1000) / 10
     }
 
-    // replace with dummy data for the moment
-    // useEffect(getHeroStats, [])
-    useEffect(getDummyHeroStats, [])
-
-    // need to add error handling to this
-    // eslint-disable-next-line
     const getHeroStats = () => {
         const url = 'https://api.opendota.com/api/heroStats'
-        fetch(url).then((response) => {
-            response.json().then(data => {
-                setHeroes(data)
-            })
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not OK');
+                }
+                response.json()
+                    .then(data => {
+                        setHeroes(data
+                            .map(hero => (
+                                {...hero,
+                                winRate: calculateWinRate(hero)}
+                            ))
+                        )
+                    })
+                .catch((error) => {
+                    console.error('There has been a problem with the hero fetch:', error);
+                });
         })
     }
 
-    // 1=yours
-    // 2=enemy
+    useEffect(getHeroStats, [])
+
+    // 1=yours, 2=enemy
     const pickHero = (heroId, team) => {
         if(team===1) {
             let tempTeam = [...yourTeam]
@@ -231,6 +241,11 @@ function DraftPage() {
                                 !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse().slice(0,15)}
                             selectHero={selectHero}/>
 
+    const clearDraft = () => {
+        setYourTeam([])
+        setEnemyTeam([])
+    }
+
     if(heroes.length===0) {
         return <CircularProgress />
     }
@@ -268,7 +283,16 @@ function DraftPage() {
                         heroes={enemyTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}
-                        cols={5}/>                                            
+                        cols={5}/>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={()=>clearDraft()}
+                        disabled={yourTeam.length + enemyTeam.length === 0}
+                        // sx={{ maxWidth: '50%' }}
+                    >
+                            RESET DRAFT
+                    </Button>
                 </Stack>
             </Stack>
         </Box>

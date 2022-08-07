@@ -8,15 +8,22 @@ function AdvantageList(props) {
 
     // stole from some dude's github
     // https://gist.github.com/mlocati/7210513
-    function perc2color(perc) {
+    function perc2color2(perc,min,max) {
+        let tempPerc = perc > max ? max : perc < min ? min : perc
+        var base = (max - min);
+
+        if (base === 0) { tempPerc = 100; }
+        else {
+            tempPerc = (tempPerc - min) / base * 100; 
+        }
         var r, g, b = 0;
-        if(perc < 50) {
+        if (tempPerc < 50) {
             r = 255;
-            g = Math.round(5.1 * perc);
+            g = Math.round(5.1 * tempPerc);
         }
         else {
             g = 255;
-            r = Math.round(510 - 5.10 * perc);
+            r = Math.round(510 - 5.10 * tempPerc);
         }
         var h = r * 0x10000 + g * 0x100 + b * 0x1;
         return '#' + ('000000' + h.toString(16)).slice(-6);
@@ -30,7 +37,7 @@ function AdvantageList(props) {
                 <ListItem
                     key={item.id}
                     onClick={()=>props.selectHero(item.id)}
-                    sx={{ bgcolor: perc2color(item.advantage*3+50)}}
+                    sx={{ bgcolor: perc2color2(item.advantage,-15,15)}}
                 >
                     <ListItemIcon>
                         <img
