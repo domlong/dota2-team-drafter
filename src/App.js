@@ -4,6 +4,10 @@ import Home from './components/Home';
 import DraftPage from './components/DraftPage';
 import HeroDetails from './components/HeroDetails';
 import NotFound from './components/NotFound';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 function App() {
   return (

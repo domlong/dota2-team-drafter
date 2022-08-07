@@ -9,6 +9,7 @@ import AdvantageList from "./AdvantageList";
 import mockResponseData from "../dummyHeroData";
 import {heroMap} from "../dotabuffHeroMap";
 import {advantages} from "../matchupAdvantages";
+import Typography from '@mui/material/Typography';
 
 function DraftPage() {
     // to do
@@ -174,7 +175,8 @@ function DraftPage() {
             key={attr}
             heroes={heroes.filter(hero => hero.primary_attr === attr)}
             highlightedHeroes={highlightedHeroes}
-            selectHero={selectHero}/>
+            selectHero={selectHero}
+            cols={10}/>
     )
 
     /*  The openDota API doesn't return advantage scores, and the process is complicated enough that it's not feasible to calculate ourselves.
@@ -231,22 +233,27 @@ function DraftPage() {
                     </Stack>
                 </Stack>
                 <Stack>
-                    <Stack direction="row" spacing={2}>
+                    <Stack direction="row" spacing={2} >
                         <HeroCard hero={heroes.find(hero => hero.id === activeHero)} pick={(team)=>pickHero(activeHero,team)} yourTeam={yourTeam} enemyTeam={enemyTeam}/>
-                        <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(0,matchupSuggestions.length/2)} selectHero={selectHero}/>
-                        <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse()} selectHero={selectHero}/>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(0,matchupSuggestions.length/2)} selectHero={selectHero} sx={{ flexGrow: '2' }}/>
+                        </Box>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse()} selectHero={selectHero}/>
+                        </Box>
                     </Stack>
-                    <h2>Your team</h2>
+                    <Typography variant="h5" >Your team</Typography>
                     <HeroGrid
                         heroes={yourTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
-                        selectHero={selectHero}/>
-                    <h2>Enemy team</h2>
+                        selectHero={selectHero}
+                        cols={5}/>
+                    <Typography variant="h5" >Enemy team</Typography>
                     <HeroGrid
                         heroes={enemyTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
-                        selectHero={selectHero}/>                                            
-                    {/* {console.log(matchupSuggestions)} */}
+                        selectHero={selectHero}
+                        cols={5}/>                                            
                 </Stack>
             </Stack>
         </Box>

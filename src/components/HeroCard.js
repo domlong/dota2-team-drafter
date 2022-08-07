@@ -21,7 +21,7 @@ function HeroCard(props) {
             props.yourTeam.includes(props.hero.id)
             || (!props.enemyTeam.includes(props.hero.id) && props.enemyTeam.length === 5)
             
-    const roleChips = props.hero.roles.map(role => <Chip label={role} />)
+    const roleChips = props.hero.roles.map((role, i) => <Chip label={role} key={i} />)
     return(
         <Card variant="outlined" sx={{ maxWidth: 384 }}>
             <CardHeader title={props.hero.localized_name} />
@@ -45,7 +45,7 @@ function HeroCard(props) {
                     to={`/heroes/${props.hero.id}`}
                     key={props.hero.id}
                 >
-                    <Button size="small" variant='outlined'>View Details</Button>
+                    <Button size="small" variant='outlined' sx={{ mr: 1}}>View Details</Button>
                 </Link>
                 <Button
                     size="small" 
@@ -53,14 +53,16 @@ function HeroCard(props) {
                     onClick={()=>props.pick(1)}
                     disabled={isDisabledYourTeam}
                 >
-                    PICK</Button>
+                    PICK
+                </Button>
                 <Button
                     size="small" 
                     variant='outlined'
                     onClick={()=>props.pick(2)}
                     disabled={isDisabledEnemyTeam}
                 >
-                    PICK ENEMY</Button>
+                    PICK ENEMY
+                </Button>
             </CardActions>
         </Card>
     )
