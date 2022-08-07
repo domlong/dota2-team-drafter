@@ -1,4 +1,3 @@
-import Hero from "./Hero"
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -24,21 +23,26 @@ function AdvantageList(props) {
     }
 
     return(
-        <List cols={1} style={{maxHeight: 500, overflow: 'auto'}}>
-            {props.list.map((item) => (
-                <ListItem key={item.id} sx={{ bgcolor: perc2color(item.advantage*4+50)}}
-                onClick={()=>props.selectHero(item.id)}>
+        <List cols={1} style={{maxHeight: 460, overflow: 'auto'}}>
+            {props.list.map((item) => {
+                const hero = props.heroes.find(x => x.id === item.id)
+                return (
+                <ListItem
+                    key={item.id}
+                    onClick={()=>props.selectHero(item.id)}
+                    sx={{ bgcolor: perc2color(item.advantage*3+50)}}
+                >
                     <ListItemIcon>
-                            <Hero
-                                hero={props.heroes.find(x => x.id === item.id)}
-                                selectHero={props.selectHero}
-                                isActive={true}
-                                showIcon={true}
-                                />  
+                        <img
+                            src={`https://cdn.cloudflare.steamstatic.com/${hero.icon}?w=164&h=144&fit=crop&auto=format`}
+                            // srcSet={`https://cdn.cloudflare.steamstatic.com/${props.hero.img}?w=164&h=144&fit=crop&auto=format&dpr=2 2x`}
+                            alt={hero.localized_name}
+                            loading="lazy"
+                        />
                     </ListItemIcon>
                     <ListItemText primary={`${item.advantage}%`}/>
                 </ListItem>
-            ))}
+            )})}
         </List>
     )
 }

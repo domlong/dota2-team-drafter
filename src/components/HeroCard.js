@@ -53,7 +53,7 @@ function HeroCard(props) {
                     onClick={()=>props.pick(1)}
                     disabled={isDisabledYourTeam}
                 >
-                    PICK
+                    {(props.yourTeam.includes(props.hero.id) && 'UNPICK') || 'PICK'}
                 </Button>
                 <Button
                     size="small" 
@@ -61,7 +61,7 @@ function HeroCard(props) {
                     onClick={()=>props.pick(2)}
                     disabled={isDisabledEnemyTeam}
                 >
-                    PICK ENEMY
+                    {(props.enemyTeam.includes(props.hero.id) && 'UNPICK ') || 'PICK '}ENEMY
                 </Button>
             </CardActions>
         </Card>

@@ -218,6 +218,19 @@ function DraftPage() {
 
     const matchupSuggestions = sumMatchupAdvantage(enemyTeam)
 
+    const bestPicks = <AdvantageList
+                            heroes={heroes}
+                            list={matchupSuggestions.filter(h => 
+                                !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(0,15)}
+                            selectHero={selectHero}
+                            sx={{ flexGrow: '2' }}/>
+
+    const worstPicks = <AdvantageList
+                            heroes={heroes}
+                            list={matchupSuggestions.filter(h => 
+                                !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse().slice(0,15)}
+                            selectHero={selectHero}/>
+
     if(heroes.length===0) {
         return <CircularProgress />
     }
@@ -236,10 +249,12 @@ function DraftPage() {
                     <Stack direction="row" spacing={2} >
                         <HeroCard hero={heroes.find(hero => hero.id === activeHero)} pick={(team)=>pickHero(activeHero,team)} yourTeam={yourTeam} enemyTeam={enemyTeam}/>
                         <Box sx={{ flexGrow: 1 }}>
-                            <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(0,matchupSuggestions.length/2)} selectHero={selectHero} sx={{ flexGrow: '2' }}/>
+                            <Typography variant="h5" >{enemyTeam.length > 0 && 'Best picks'}</Typography>
+                            {bestPicks}
                         </Box>
                         <Box sx={{ flexGrow: 1 }}>
-                            <AdvantageList heroes={heroes} list={matchupSuggestions.filter(h => !(yourTeam.includes(h.id) || enemyTeam.includes(h.id))).slice(matchupSuggestions.length/2).reverse()} selectHero={selectHero}/>
+                            <Typography variant="h5">{enemyTeam.length > 0 && 'Worst picks'}</Typography>
+                            {worstPicks}
                         </Box>
                     </Stack>
                     <Typography variant="h5" >Your team</Typography>
