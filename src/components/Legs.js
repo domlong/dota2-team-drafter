@@ -29,10 +29,8 @@ function Legs(props) {
                 value={props.filteredLegs}
                 label="Legs"
                 onChange={handleChange}
-                // renderValue={(selected) => selected.join(', ')}
                 renderValue={(selected) => {
                     if(selected.length === props.legs.length) return 'any'
-                    // if(1) return selected
                     else return selected.join(', ')
                     }
                 }

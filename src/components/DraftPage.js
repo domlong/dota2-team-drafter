@@ -1,26 +1,20 @@
 import { useState, useEffect } from "react"
-import { CircularProgress, TextField, Stack} from '@mui/material';
+import { CircularProgress, TextField, Stack, Button, Typography} from '@mui/material';
 import { Box } from "@mui/system";
 import HeroGrid from "./HeroGrid"
 import Roles from "./Roles";
 import Legs from "./Legs";
 import HeroCard from "./HeroCard";
 import AdvantageList from "./AdvantageList";
-// import mockResponseData from "../dummyHeroData";
 import {heroMap} from "../dotabuffHeroMap";
 import {advantages} from "../matchupAdvantages";
-import Typography from '@mui/material/Typography';
-import { Button } from "@mui/material"
 
 function DraftPage() {
     // to do
-    // async/await
-    // error handling
-    // add extra search functionality like nicknames, role text
     // pretty up hero card
     //     pick buttons color change?
     // actually write HeroDetails
-    //
+    //  add Counters component (advantageList)
     // automatically save & load draft when routing
     //
     // investigate other api params
@@ -113,17 +107,6 @@ function DraftPage() {
             setFilteredLegs([legs, ...filteredLegs])
         }
     }
-
-    //
-    // const getDummyHeroStats = () => {
-    //     const tempHeroes = mockResponseData
-    //             .heroes
-    //             .map(hero => (
-    //                 {...hero,
-    //                 winRate: calculateWinRate(hero)}
-    //     ))
-    //     setHeroes(tempHeroes)
-    // }
 
     // this is jank I know
     // returns pre-formatted percentage as float accurate to 3 sig figures e.g. 52.7

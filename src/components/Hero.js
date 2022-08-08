@@ -13,7 +13,6 @@ function Hero(props) {
             >
         <img
             src={`https://cdn.cloudflare.steamstatic.com/${imageUrl}?w=164&h=144&fit=crop&auto=format`}
-            // srcSet={`https://cdn.cloudflare.steamstatic.com/${props.hero.img}?w=164&h=144&fit=crop&auto=format&dpr=2 2x`}
             alt={props.hero.localized_name}
             loading="lazy"
             onClick={()=>props.selectHero(props.hero.id)}
