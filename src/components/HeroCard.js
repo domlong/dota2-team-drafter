@@ -27,7 +27,7 @@ function HeroCard(props) {
                 component="img"
                 height="216"
                 image={`https://cdn.cloudflare.steamstatic.com/${props.hero.img}?w=164&h=144&fit=crop&auto=format`}
-                alt="props.name"
+                alt={props.localized_name}
             />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -41,7 +41,7 @@ function HeroCard(props) {
             <CardActions>
                 <Link
                     to={`/heroes/${props.hero.id}`}
-                    key={props.hero.id}
+                    state={props.hero}
                 >
                     <Button size="small" variant='outlined' sx={{ mr: 1}}>View Details</Button>
                 </Link>
