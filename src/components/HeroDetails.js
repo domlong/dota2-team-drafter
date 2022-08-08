@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import { Button, CircularProgress, Chip } from "@mui/material"
+import { Button, CircularProgress, Chip, Container, Stack } from "@mui/material"
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import * as items from '../items.json'
@@ -52,35 +52,41 @@ function HeroDetails() {
 
     return hero ? (
 
-        <div>
-            <Card variant="outlined" sx={{ maxWidth: 384 }}>
-            <CardHeader title={hero.localized_name} />
-            <CardMedia
-                component="img"
-                height="216"
-                image={`https://cdn.cloudflare.steamstatic.com/${hero.img}?w=164&h=144&fit=crop&auto=format`}
-                alt={hero.localized_name}
-            />
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                {hero.attack_type}
-                </Typography>
-                {roleChips}
-                <Typography sx={{ mb: 1.5 }} color="text.secondary" gutterBottom>
-                    {`win rate: ${hero.winRate}%`}
-                    {/* {console.log(Object.values(items))} */}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Link
-                    to={`/draft`}
-                >
-                    <Button size="small" variant='outlined'>Return to Draft</Button>
-                </Link>
-            </CardActions>
-            </Card>
-            {itemGrid}
-        </div>
+        <Container>
+            <Stack direction="row" spacing={2}>
+                <Card variant="outlined" sx={{ maxWidth: 384 }}>
+                    <CardHeader title={hero.localized_name} />
+                    <CardMedia
+                        component="img"
+                        height="216"
+                        image={`https://cdn.cloudflare.steamstatic.com/${hero.img}?w=164&h=144&fit=crop&auto=format`}
+                        alt={hero.localized_name}
+                    />
+                    <CardContent>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        {hero.attack_type}
+                        </Typography>
+                        {roleChips}
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary" gutterBottom>
+                            {`win rate: ${hero.winRate}%`}
+                            {/* {console.log(Object.values(items))} */}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Link
+                            to={`/draft`}
+                        >
+                            <Button size="small" variant='outlined'>Return to Draft</Button>
+                        </Link>
+                    </CardActions>
+                </Card>
+                <div>
+                    <h3>Popular Items</h3>
+                    {itemGrid}
+                </div>
+                
+            </Stack>
+        </Container>
       ) : (
         <CircularProgress />
       );

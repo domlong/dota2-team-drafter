@@ -30,10 +30,10 @@ function HeroCard(props) {
                 alt={props.localized_name}
             />
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                details go here
+                <Typography color="text.secondary" gutterBottom>
+                    {props.hero.attack_type}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography sx={{ mb: 1 }} color="text.secondary">
                     {`win rate: ${props.hero.winRate}%`}
                 </Typography>
                 {roleChips}

@@ -1,11 +1,12 @@
-import * as React from 'react';
+// import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 export default function ItemGrid(props) {
   return (
-    <ImageList sx={{ width: 500, height: 450 }}>
+    // <ImageList sx={{ width: 500, height: 450 }}>
+    <ImageList cols={3}>
       {props.earlyItems.map((x) => {
         const item = Object.values(props.itemDb).find(i => i.id === parseInt(x))
         return (

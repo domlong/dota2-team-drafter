@@ -40,3 +40,14 @@
 li {
   cursor: pointer;
 }
+
+.home-banner {
+    text-align:center;
+}
+
+.main-nav {
+  font-family: 'roboto';
+  font-size: x-large;
+  margin-top: 20px;
+  margin-left: 40px;
+}

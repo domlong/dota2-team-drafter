@@ -233,7 +233,7 @@ function DraftPage() {
         return <CircularProgress />
     }
     else return(
-        <Box sx={{ m: 5 }}>
+        <Box sx={{ ml:5, mr: 5, mt: 1 }}>
             <Stack direction="row" spacing={4}>
                 <Stack sx={{ maxWidth: '50%' }}>
                     <TextField id="filled-basic" label="search" variant="outlined" onChange={(e)=>setSearchTerm(e.target.value)} />
