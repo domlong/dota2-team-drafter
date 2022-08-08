@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Dota 2 Team Drafter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+From Wikipedia:
+>_**Dota 2**_ is a 2013 [multiplayer online battle arena](https://en.wikipedia.org/wiki/Multiplayer_online_battle_arena "Multiplayer online battle arena") (MOBA) video game developed and published by [Valve](https://en.wikipedia.org/wiki/Valve_Corporation "Valve Corporation"). _Dota 2_ is played in matches between two teams of five players, with each team occupying and defending their own separate base on the map. Each of the ten players independently controls a powerful character known as a "hero" that all have unique [abilities](https://en.wikipedia.org/wiki/Skill_(role-playing_games) "Skill (role-playing games)") and differing styles of play.
 
-## Available Scripts
+A central aspect of the strategy in a game of Dota 2 revolves around the _"drafting phase"_ before the game begins, where teams take turns choosing their heroes. There are many factors that determine a hero's synergy within your own team and the counter-play it presents to your opposing team's draft.
 
-In the project directory, you can run:
+With 19 quadrillion possible hero combinations each game, how does the average player decide what to pick? With a React SPA, dummy 🙂
 
-### `yarn start`
+The purpose of this tool is to:
+ 1. Simulate a live drafting environment without the need for launching the client.
+ 2. Provide key information to assist in the drafting process in real time.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ - Display a list/grid of all heroes
+    - Searchable by text
+    - Filterable by role buttons
+    - Route to a detailed card when individually selected
+ - Connect to the [OpenDota API](https://www.opendota.com/) to retrieve basic game info and populate the grid
+ - Simulate the process of drafting two teams
+ - Retrieve detailed match statistics from the OpenDota API and present those in the drafting process
+    - win rate
+    - item builds
+ - Advantage List (i.e synergy/counterpick suggestions)
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ![app preview](./public/preview.jpg)

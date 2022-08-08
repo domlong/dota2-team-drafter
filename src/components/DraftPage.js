@@ -10,17 +10,6 @@ import {heroMap} from "../dotabuffHeroMap";
 import {advantages} from "../matchupAdvantages";
 
 function DraftPage() {
-    // to do
-    // pretty up hero card
-    //     pick buttons color change?
-    // actually write HeroDetails
-    //  add Counters component (advantageList)
-    // automatically save & load draft when routing
-    //
-    // investigate other api params
-    //      can grab more data using CONSTANTS call but might be overkill.
-    //      unwrap it into an array if doing this
-
     const [heroes, setHeroes] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [filteredRoles, setFilteredRoles] = useState([])
@@ -255,27 +244,30 @@ function DraftPage() {
                             {worstPicks}
                         </Box>
                     </Stack>
-                    <Typography variant="h5" >Your team</Typography>
+                    {yourTeam.length > 0 ? <Typography variant="h5" >Your team</Typography> : null}
                     <HeroGrid
                         heroes={yourTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}
                         cols={5}/>
-                    <Typography variant="h5" >Enemy team</Typography>
+                    {enemyTeam.length > 0 ? <Typography variant="h5" >Enemy team</Typography> : null}
                     <HeroGrid
                         heroes={enemyTeam.map(id => heroes.find(hero => hero.id === id))}
                         highlightedHeroes={heroes.map(hero => hero.id)}
                         selectHero={selectHero}
                         cols={5}/>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={()=>clearDraft()}
-                        disabled={yourTeam.length + enemyTeam.length === 0}
-                        // sx={{ maxWidth: '50%' }}
-                    >
+                    {yourTeam.length > 0 ?
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={()=>clearDraft()}
+                            disabled={yourTeam.length + enemyTeam.length === 0}
+                            sx={{ maxWidth: '20%' }}
+                        >
                             RESET DRAFT
-                    </Button>
+                        </Button>
+                        : null
+                    }
                 </Stack>
             </Stack>
         </Box>

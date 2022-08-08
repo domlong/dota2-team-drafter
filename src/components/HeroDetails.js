@@ -12,7 +12,6 @@ import ItemGrid from './ItemGrid';
 
 function HeroDetails() {
     const [heroItems, setHeroItems] = useState()
-    // const { heroId } = useParams();
     const location = useLocation();
     const hero = location.state; 
 
@@ -35,20 +34,8 @@ function HeroDetails() {
 
     const roleChips = hero.roles.map((role, i) => <Chip label={role} key={i} />)
 
-    // const earlyItems =     
-    //     heroItems ? Object.entries(heroItems.early_game_items)
-    //             .map(x => {
-    //                 const item = Object.values(items).find(i => i.id === parseInt(x))
-    //                 return (
-    //                     <div>
-    //                         <img src={`https://cdn.cloudflare.steamstatic.com/${item.img}`} alt={item.dname} key={item.id}/>
-    //                         <h5>{item.dname}</h5>
-    //                     </div>
-    //                 )
-    //             })
-    //             : null
-
-    const itemGrid = heroItems ? <ItemGrid earlyItems={Object.entries(heroItems.early_game_items)} itemDb={items}/> : null
+    const itemGridEarly = heroItems ? <ItemGrid items={Object.entries(heroItems.early_game_items)} itemDb={items}/> : null
+    const itemGridLate = heroItems ? <ItemGrid items={Object.entries(heroItems.late_game_items)} itemDb={items}/> : null
 
     return hero ? (
 
@@ -63,13 +50,20 @@ function HeroDetails() {
                         alt={hero.localized_name}
                     />
                     <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        <Typography color="text.secondary" gutterBottom>
                         {hero.attack_type}
                         </Typography>
-                        {roleChips}
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary" gutterBottom>
-                            {`win rate: ${hero.winRate}%`}
-                            {/* {console.log(Object.values(items))} */}
+                        <div className='hero-details-roles'>
+                            {roleChips}
+                        </div>
+                        <Typography color="text.secondary">
+                            {`Win rate: ${hero.winRate}%`}
+                        </Typography>
+                        <Typography color="text.secondary">
+                            {`Legs: ${hero.legs}`}
+                        </Typography>
+                        <Typography color="text.secondary">
+                            {`Base armour: ${hero.base_armor}`}
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -81,8 +75,12 @@ function HeroDetails() {
                     </CardActions>
                 </Card>
                 <div>
-                    <h3>Popular Items</h3>
-                    {itemGrid}
+                    <Typography variant="h5" >Popular Items (Early)</Typography>
+                    {itemGridEarly}
+                </div>
+                <div>
+                    <Typography variant="h5" >Popular Items (Late)</Typography>
+                    {itemGridLate}
                 </div>
                 
             </Stack>

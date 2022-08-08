@@ -5,15 +5,14 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 export default function ItemGrid(props) {
   return (
-    // <ImageList sx={{ width: 500, height: 450 }}>
     <ImageList cols={3}>
-      {props.earlyItems.map((x) => {
+      {props.items.map((x) => {
         const item = Object.values(props.itemDb).find(i => i.id === parseInt(x))
         return (
             <ImageListItem key={item.img}>
             <img
                 src={`https://cdn.cloudflare.steamstatic.com/${item.img}`}
-                // srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                // srcSet={`https://cdn.cloudflare.steamstatic.com/${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 alt={item.dname}
                 loading="lazy"
             />
