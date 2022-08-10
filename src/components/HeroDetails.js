@@ -65,6 +65,9 @@ function HeroDetails() {
                         <Typography color="text.secondary">
                             {`Base armour: ${hero.base_armor}`}
                         </Typography>
+                        <Typography color="text.secondary">
+                            {`Move speed: ${hero.move_speed}`}
+                        </Typography>
                     </CardContent>
                     <CardActions>
                         <Link
