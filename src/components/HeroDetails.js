@@ -33,12 +33,10 @@ function HeroDetails() {
     useEffect(getPopularItems, [hero.id])
 
     const roleChips = hero.roles.map((role, i) => <Chip label={role} key={i} />)
-
     const itemGridEarly = heroItems ? <ItemGrid items={Object.entries(heroItems.early_game_items)} itemDb={items}/> : null
     const itemGridLate = heroItems ? <ItemGrid items={Object.entries(heroItems.late_game_items)} itemDb={items}/> : null
 
     return hero ? (
-
         <Container>
             <Stack direction="row" spacing={2}>
                 <Card variant="outlined" sx={{ maxWidth: 384 }}>
@@ -79,13 +77,12 @@ function HeroDetails() {
                 </Card>
                 <div>
                     <Typography variant="h5" >Popular Items (Early)</Typography>
-                    {itemGridEarly}
+                    {heroItems ? itemGridEarly : <CircularProgress />}
                 </div>
                 <div>
                     <Typography variant="h5" >Popular Items (Late)</Typography>
-                    {itemGridLate}
-                </div>
-                
+                    {heroItems ? itemGridLate : <CircularProgress />}
+                </div>                
             </Stack>
         </Container>
       ) : (
