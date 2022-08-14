@@ -77,11 +77,23 @@ function HeroDetails() {
                 </Card>
                 <div>
                     <Typography variant="h5" >Popular Items (Early)</Typography>
-                    {heroItems ? itemGridEarly : <CircularProgress />}
+                    {heroItems
+                        ? itemGridEarly
+                        : <div>
+                            <p>retrieving data...</p>
+                            <CircularProgress />
+                          </div>
+                    }
                 </div>
                 <div>
                     <Typography variant="h5" >Popular Items (Late)</Typography>
-                    {heroItems ? itemGridLate : <CircularProgress />}
+                    {heroItems
+                        ? Late
+                        : <div>
+                            <p>retrieving data...</p>
+                            <CircularProgress />
+                          </div>
+                    }
                 </div>                
             </Stack>
         </Container>
