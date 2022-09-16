@@ -56,3 +56,16 @@ li {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+.hero-grid img {
+  transition: transform .2s ease;
+}
+
+.hero-grid img:hover {
+  transform: scale(1.5);
+  z-index: 1;
+}
+
+.MuiImageList-root {
+  overflow: visible;
+}

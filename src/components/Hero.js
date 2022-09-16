@@ -10,6 +10,7 @@ function Hero(props) {
             key={props.hero.id}
             id={props.hero.id}
             sx={{ opacity: props.isActive ? "100%" : "30%" }}
+            className={'zoom'}
             >
         <img
             src={`https://cdn.cloudflare.steamstatic.com/${imageUrl}?w=164&h=144&fit=crop&auto=format`}

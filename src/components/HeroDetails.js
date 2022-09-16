@@ -88,7 +88,7 @@ function HeroDetails() {
                 <div>
                     <Typography variant="h5" >Popular Items (Late)</Typography>
                     {heroItems
-                        ? Late
+                        ? itemGridLate
                         : <div>
                             <p>retrieving data...</p>
                             <CircularProgress />

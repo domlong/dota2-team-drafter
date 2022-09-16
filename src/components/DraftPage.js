@@ -158,7 +158,8 @@ function DraftPage() {
             heroes={heroes.filter(hero => hero.primary_attr === attr)}
             highlightedHeroes={highlightedHeroes}
             selectHero={selectHero}
-            cols={10}/>
+            cols={10}
+            className={'hero-grid'}/>
     )
 
     /*  The openDota API doesn't return advantage scores, and the process is complicated enough that it's not feasible to calculate ourselves.

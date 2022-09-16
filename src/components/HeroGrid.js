@@ -4,7 +4,7 @@ import Hero from "./Hero"
 function HeroGrid(props) {
     if(props.heroes === undefined || props.heroes.length===0) return null
     return(
-        <ImageList cols={props.cols}>
+        <ImageList cols={props.cols} sx={{ overflow: "visible" }} className={props.className || ''}>
             {props.heroes.map((hero) => (
                 <Hero
                     key={hero.id}
