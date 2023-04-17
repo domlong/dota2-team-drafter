@@ -1,6 +1,6 @@
 # Dota 2 Team Drafter
 
-## [View online](https://dota2-team-drafter.herokuapp.com/)
+## [View online](https://dota2-team-drafter.vercel.app/draft)
 
 From Wikipedia:
 >_**Dota 2**_ is a 2013 [multiplayer online battle arena](https://en.wikipedia.org/wiki/Multiplayer_online_battle_arena "Multiplayer online battle arena") (MOBA) video game developed and published by [Valve](https://en.wikipedia.org/wiki/Valve_Corporation "Valve Corporation"). _Dota 2_ is played in matches between two teams of five players, with each team occupying and defending their own separate base on the map. Each of the ten players independently controls a powerful character known as a "hero" that all have unique [abilities](https://en.wikipedia.org/wiki/Skill_(role-playing_games) "Skill (role-playing games)") and differing styles of play.
