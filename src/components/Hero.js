@@ -15,19 +15,19 @@ function Hero(props) {
             id={props.hero.id}
             sx={{ opacity: props.isActive ? "100%" : "30%", }}
             className='zoom'
-            >
-        <img
-            src={`https://cdn.cloudflare.steamstatic.com/${imageUrl}?w=164&h=144&fit=crop&auto=format`}
-            alt={props.hero.localized_name}
-            loading="lazy"
             onClick={()=>props.selectHero(props.hero.id)}
-        />
-
-            <ImageListItemBar
-                title={props.hero.localized_name}
-                position="bottom"
-                className="hidden-title"
-            />
+            >
+                <img
+                    src={`https://cdn.cloudflare.steamstatic.com/${imageUrl}?w=164&h=144&fit=crop&auto=format`}
+                    alt={props.hero.localized_name}
+                    loading="lazy"
+                    
+                />
+                <ImageListItemBar
+                    title={props.hero.localized_name}
+                    position="bottom"
+                    className="hidden-title"
+                />
         
             </ImageListItem>
         </ThemeProvider>
