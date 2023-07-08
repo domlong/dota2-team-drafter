@@ -57,14 +57,13 @@ li {
   margin-bottom: 5px;
 }
 
-.hero-grid img {
+.hero-grid li {
   transition: transform .2s ease;
 }
 
-.hero-grid img:hover {
+.hero-grid li:hover {
   transform: scale(2);
   z-index: 1;
-
   box-shadow: 0 0 10px 10px rgba(33,33,33,.2); 
 }
 

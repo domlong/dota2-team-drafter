@@ -1,4 +1,7 @@
-import { ImageListItem } from "@mui/material"
+import { ImageListItem, ImageListItemBar } from "@mui/material"
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from '../demo'
+
 
 function Hero(props) {
     let imageUrl = props.hero.img
@@ -6,11 +9,12 @@ function Hero(props) {
         imageUrl = props.hero.icon
     }
     return(
-        <ImageListItem 
+        <ThemeProvider theme={theme}>
+            <ImageListItem 
             key={props.hero.id}
             id={props.hero.id}
-            sx={{ opacity: props.isActive ? "100%" : "30%" }}
-            className={'zoom'}
+            sx={{ opacity: props.isActive ? "100%" : "30%", }}
+            className='zoom'
             >
         <img
             src={`https://cdn.cloudflare.steamstatic.com/${imageUrl}?w=164&h=144&fit=crop&auto=format`}
@@ -18,7 +22,15 @@ function Hero(props) {
             loading="lazy"
             onClick={()=>props.selectHero(props.hero.id)}
         />
-        </ImageListItem>
+
+            <ImageListItemBar
+                title={props.hero.localized_name}
+                position="bottom"
+                className="hidden-title"
+            />
+        
+            </ImageListItem>
+        </ThemeProvider>
     )
 }
 
