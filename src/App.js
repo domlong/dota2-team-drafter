@@ -12,13 +12,14 @@ import '@fontsource/roboto/700.css';
 function App() {
   return (
     <BrowserRouter>
-      <nav className='main-nav'>
+      {/* <nav className='main-nav'>
         <NavLink to="/">Home</NavLink> | 
         <NavLink to="/draft">Draft</NavLink>
-      </nav>
+      </nav> */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="draft" element={<DraftPage />}/>
+        <Route path="/" element={<DraftPage />}/>
         <Route path="heroes/:heroId" element={<HeroDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
