@@ -4,10 +4,13 @@ import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 export default function ItemGrid(props) {
+  
   return (
     <ImageList cols={3}>
       {props.items.map((x) => {
+        
         const item = Object.values(props.itemDb).find(i => i.id === parseInt(x))
+        if(!item) return null
         return (
             <ImageListItem key={item.img}>
             <img

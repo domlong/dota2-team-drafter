@@ -47,7 +47,7 @@ function HeroCard(props) {
                 </Link>
                 <Button
                     size="small" 
-                    variant='outlined'
+                    variant='contained'
                     onClick={()=>props.pick(1)}
                     disabled={isDisabledYourTeam}
                 >
@@ -55,7 +55,7 @@ function HeroCard(props) {
                 </Button>
                 <Button
                     size="small" 
-                    variant='outlined'
+                    variant='contained'
                     onClick={()=>props.pick(2)}
                     disabled={isDisabledEnemyTeam}
                 >

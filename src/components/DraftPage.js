@@ -15,7 +15,7 @@ function DraftPage() {
     const [filteredRoles, setFilteredRoles] = useState([])
     const [filteredLegs, setFilteredLegs] = useState([0,2,4,6,8])
     const [activeHero, setActiveHero] = useState(0)
-    const attributes = ['str', 'agi', 'int']
+    const attributes = ['str', 'agi', 'int', 'all']
     const [yourTeam, setYourTeam] = useState([])
     const [enemyTeam, setEnemyTeam] = useState([])
 
@@ -158,7 +158,7 @@ function DraftPage() {
             heroes={heroes.filter(hero => hero.primary_attr === attr)}
             highlightedHeroes={highlightedHeroes}
             selectHero={selectHero}
-            cols={10}
+            cols={11}
             className={'hero-grid'}/>
     )
 
@@ -225,7 +225,7 @@ function DraftPage() {
     else return(
         <Box sx={{ ml:5, mr: 5, mt: 1 }}>
             <Stack direction="row" spacing={4}>
-                <Stack sx={{ maxWidth: '50%' }}>
+                <Stack sx={{ maxWidth: '60%' }}>
                     <TextField id="filled-basic" label="search" variant="outlined" onChange={(e)=>setSearchTerm(e.target.value)} />
                     {heroGrids}
                     <Stack direction="row" spacing={2}>

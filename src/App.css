@@ -62,8 +62,10 @@ li {
 }
 
 .hero-grid img:hover {
-  transform: scale(1.5);
+  transform: scale(2);
   z-index: 1;
+
+  box-shadow: 0 0 10px 10px rgba(33,33,33,.2); 
 }
 
 .MuiImageList-root {
